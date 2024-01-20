@@ -47,3 +47,33 @@ FROM pages P LEFT JOIN page_likes L
 ON P.page_id = L.page_id
 WHERE L.liked_date IS NULL
 ORDER BY P.page_id ASC;
+
+--Course test
+--Question 1:
+Select distinct min(replacement_cost )
+from film
+--Question 2
+Select 
+case
+when replacement_cost between 9.99 and 19.99 then 'low'
+when replacement_cost between 20 and 24.99 then 'medium'
+else 'hight'
+end as category,
+count(*) as So_luong
+from film
+group by category
+--Question 3
+select a.film_id, a.category_id, b.title, b.length, c.name
+from public.film_category as a
+inner join film as b on a.film_id=b.film_id
+inner join public.category as c on a.category_id= c.category_id
+where name='Sports' or name='Drama'
+order by length desc
+--Question 4
+select a.name, count(a.category_id)
+from public.category as a
+left join public.film_category as b on a.category_id=b.category_id
+group by a.name 
+order by count desc
+----Question 5
+

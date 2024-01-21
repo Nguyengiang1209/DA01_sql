@@ -82,9 +82,9 @@ left join public.film_actor as b on a.actor_id=b.actor_id
 group by a.first_name ||' '|| a.last_name
 order by count desc
 --Question 6
-select b.address_id, a.customer_id
+select count(b.address_id)
 from public.address as b
-join public.customer as a on a.address_id=b.address_id
+left join public.customer as a on a.address_id=b.address_id
 where a.address_id is null
 -- Question 7
 

@@ -75,5 +75,16 @@ from public.category as a
 left join public.film_category as b on a.category_id=b.category_id
 group by a.name 
 order by count desc
-----Question 5
+--Question 5
+select a.first_name ||' '|| a.last_name as full_name, count(b.film_id)
+from public.actor as a
+left join public.film_actor as b on a.actor_id=b.actor_id
+group by a.first_name ||' '|| a.last_name
+order by count desc
+--Question 6
+select b.address_id, a.customer_id
+from public.address as b
+join public.customer as a on a.address_id=b.address_id
+where a.address_id is null
+-- Question 7
 

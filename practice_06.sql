@@ -110,8 +110,9 @@ UNION ALL
  ORDER BY AVG(rating) DESC, title ASC
  LIMIT 1)
 --Bai 12
-select requester_id as id, (select count(*) from RequestAccepted
-where id=requester_id or id=accepter_id) as num
-from RequestAccepted
-group by requester_id
+select id, count(*) as num 
+from ( select requester_id as id from RequestAccepted
+union all
+select accepter_id FROM RequestAccepted) as friends_count
+group by id
 order by num desc limit 1
